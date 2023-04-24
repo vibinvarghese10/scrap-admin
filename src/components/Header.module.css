@@ -1,0 +1,110 @@
+.headerContainer{
+    height: 80px;
+    background-color: #dddddd;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.headerRight, .headerLeft{
+    /*background-color: olive;*/
+    display: grid;
+}
+
+.headerLeft h5{
+    margin: auto 40px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 34px;
+    font-weight: bolder;
+}
+
+.headerRight{
+    /*background-color: red;*/
+    grid-template-columns: repeat(6, 1fr);
+   
+}
+
+.routerLink, .dropdown{
+    text-decoration: none;
+    color: black;
+    margin: auto;
+    font-family: "Lucida Console", "Courier New", monospace;
+    
+}
+
+.mobileRouterLink{
+    color: black;
+}
+
+.headerMobileRight{
+    display: none;
+}
+
+@media screen and (max-width: 850px) {
+
+    .headerRight{
+
+        display: none;
+       
+    }
+
+    .headerMobileRight{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 20px;
+    }
+
+    
+}
+
+.routerLink:hover, .mobileRouterLink:hover  {
+    color: #e7eae5;
+    cursor: pointer;
+}
+
+
+.dropdown .dropbtn {  
+
+    
+    background-color: inherit;
+
+  }
+
+  .dropdown:hover .dropbtn {
+    color: #e7eae5;
+    cursor: pointer;
+
+  }
+
+  .dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #e7eae5;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    
+
+  }
+
+  .dropdown:hover .dropdownContent {
+    display: block;
+  }
+
+  .dropdownContent div {
+
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .dropdownContent a:hover {
+    background-color: #dddddd;
+    color: #e7eae5
+  }
+
+
+

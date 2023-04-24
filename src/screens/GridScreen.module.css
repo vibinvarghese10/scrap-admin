@@ -1,0 +1,136 @@
+.container{
+    height: 100vh;
+    display: grid; /* first thing to do */
+    gap: 1.5rem; /* to get vertical and horizontal gap */
+    grid-template-columns: 500px 1fr 1fr /* to create column || we can also mix and match the px and fr*/
+}
+
+.child{
+    background-color: blue;
+    width: auto;
+    min-height: 110px;
+    padding: 20px;
+}
+
+.child:nth-child(1){
+    font-size: 1.1rem;
+    grid-row: span 2; /* Here we conjuct two rows */
+    /* To center the content inside the grid item create a grid and use align content property n he grid item */
+    display: grid;
+    align-content: center;
+}
+
+/* To center an item horizontally and vertically use display:grid and margin:auto */
+.container2{
+    height: 100vh;
+    margin-top: 50px;
+    background-color: brown;
+    display: grid;
+}
+
+.child2{
+    background-color: blue;
+    display: inline-block;
+    margin: auto;
+}
+
+/* To center the items inside grid */
+.container3{
+    min-height: 25vh;
+    margin-top: 50px;
+    background-color: rgb(210, 45, 231);
+    display: grid;
+    grid-template-columns: minmax(auto, 900px); /* to make the content inside the grid responsive to different screen size */
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+}
+
+.container4{
+    width: 950px;
+    height: 330px;
+    margin-top: 40px;
+    background-color: brown;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 170px 60px;
+}
+
+.child4{
+    grid-column: 1 / -1; /* to move element to a specific cells, we start with start line number and ends with end line number */
+    grid-row: 1 / 4;
+    background-color:rgba(0, 0, 0, 0.1);
+}
+
+
+
+.container4 img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    grid-column: 1;
+
+}
+
+
+
+
+@media screen and (min-width: 850px) {
+    .layout{
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: 1fr 2.5fr;
+        /*below is the aligning items through columns and row*/
+        grid-template-areas: 
+          "headerarea headerarea"
+          "s main"
+          "s footer";
+    }
+    
+}
+
+.sidebar{
+    background-color: #ddd;
+    font-size: 0.8rem;
+    color: #999;
+    padding: 20px;
+    grid-area: s; /*connecting items with grid-template-area*/
+}
+
+.header{
+    background-color: rgb(113, 113, 175);
+    color: #fff;
+    padding: 20px;
+    grid-area: headerarea;
+}
+
+.main{
+    grid-area: main;
+    padding: 20px;
+    line-height: 1.7;
+}
+
+.footer{
+    background-color: rgb(77,77,77);
+    color: #fff;
+    padding: 15px;
+    grid-area: footer;
+    align-self: flex-end;
+}
+
+.rescontainer{
+    max-width: 1100px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /*This handles the responsivenesss in grid*/
+    gap: 20px;
+}
+
+.reschild{
+    background-color: rgb(204, 247, 230);
+    padding: 20px;
+    color: rgb(90, 145, 123);
+    font-size: 0.77rem;
+    line-height: 1.7;
+    overflow: auto;
+}

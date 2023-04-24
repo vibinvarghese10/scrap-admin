@@ -1,0 +1,27 @@
+
+
+
+.itemCont{
+    /*background-color: rgb(157, 204, 109);*/
+    overflow-x:hidden;
+    grid-area: item;
+}
+
+.cateCont{
+    /*background-color: rgb(52, 105, 155);*/
+    grid-area: cate;
+}
+
+@media screen and (min-width: 850px) {
+    .container{
+        display: grid;
+        grid-template-columns:2.5fr 1fr;
+        min-height: 100vh;
+
+        /*below is the aligning items through columns and row*/
+        grid-template-areas: 
+          "item cate";
+    }
+    
+    
+}

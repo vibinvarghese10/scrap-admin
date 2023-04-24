@@ -1,0 +1,54 @@
+
+.formContainer{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.formWraper{
+    min-height: 100px;
+    background-color: #dddddd;
+    padding:25px;
+    border-radius: 10px;
+    flex-basis: 400px;
+
+
+
+
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    
+}
+
+.in1, .in2, .btn{
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+
+}
+
+.btn{
+    border-width: 1px;
+    border-style: solid;
+    border-color: dodgerblue;
+    color: dodgerblue;
+}
+
+
+.flashMsg{
+    background-color: #e7eae5;
+    border-radius: 5px;
+    padding: 8px;
+    color: red;
+    border-color: red;
+    border-width: 2px;
+    border-style:dashed;
+
+}

@@ -1,0 +1,56 @@
+.homeContainer{
+    min-height: 100vh;
+    display: grid; /* first thing to do */
+    gap: 1.5rem;  /* to get vertical and horizontal gap */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 120px 1fr;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+.homeChild{
+
+    width: auto;
+    min-height: 110px;
+
+}
+.homeChild:nth-child(5){
+   
+    grid-column: span 2; /* Here we conjuct two rows */
+    /* To center the content inside the grid item create a grid and use align content property n he grid item */
+    display: grid;
+    margin: 0px;
+
+}
+
+.homeChild:nth-child(6){
+   
+    grid-column: span 2; /* Here we conjuct two rows */
+    /* To center the content inside the grid item create a grid and use align content property n he grid item */
+    display: grid;
+    margin: 0px;
+    
+}
+
+@media screen and (max-width:750px) {
+
+
+    .homeContainer{
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 100px 100px 1fr 1fr;
+  
+  
+
+    }
+
+    .homeChild:nth-child(5){
+   
+        margin-top: 10px;
+    
+    }
+
+}

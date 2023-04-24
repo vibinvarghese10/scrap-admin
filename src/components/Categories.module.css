@@ -1,0 +1,56 @@
+.categoryContainer{
+    margin-top: 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.categoryHeader p{
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 20px;
+    /*background-color:darkcyan;*/
+    margin: auto 15px;
+}
+
+
+
+.categoryBody{
+    /*background-color: coral; */
+    min-height: 50px;
+}
+
+.categoryItem {
+    height: 45px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 5px;
+
+}
+
+.categoryItem:hover{
+    background-color: #dddddd
+}
+
+.categoryItem p{
+    margin: auto auto auto 20px;
+}
+
+
+
+.categoryHeader{
+    height: 50px;
+    background-color: #dddddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
+.categoryFooter button{
+    height: 40px;
+    width: 100%;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: dodgerblue;
+    border-width: 0.5px;
+    
+}
+

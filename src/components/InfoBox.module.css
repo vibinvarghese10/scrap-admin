@@ -1,0 +1,18 @@
+.boxContainer{
+
+    background-color: #dddddd;
+    width: auto;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.boxData p{
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.boxHead h5{
+    font-weight: 500;
+
+}

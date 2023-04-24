@@ -1,0 +1,24 @@
+.tableContainer{
+    margin: 20px;
+    border-radius: 10px;
+    border-color: #dddddd;
+    border-width: 1px;
+    border-style: solid;
+    overflow-x: auto;
+    
+}
+
+.redBtn, .blueBtn {
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 0.01px;
+}
+.blueBtn{
+    border-color: dodgerblue;
+    color: dodgerblue;
+}
+
+.redBtn{
+    border-color: red;
+    color: red;
+}

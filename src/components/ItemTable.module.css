@@ -1,0 +1,50 @@
+
+ .tableContainer{
+    margin: 20px;
+    border-radius: 10px;
+    border-color: #dddddd;
+    border-width: 1px;
+    border-style: solid;
+    overflow-x: auto;
+    
+}
+
+.tableHeader{
+    /*background-color: coral;*/
+    margin: 20px 20px 0px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+  .tableHeader h3{
+      font-size: 25px;
+      font-weight: 600;
+  }
+
+  .tableHeader select{
+    width: 120px;
+    height: 35px;
+    border-color: #dddddd;
+    border-radius: 5px;
+    border-style: solid;
+    background-color: #dddddd;
+    
+}
+
+.edtBtn, .dltBtn {
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 0.01px;
+}
+.edtBtn{
+    border-color: dodgerblue;
+}
+
+.dltBtn{
+    border-color: red;
+}
+
+
+
