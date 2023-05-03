@@ -16,10 +16,17 @@ USER_LOGIN_REQUEST,
          USER_SCRAPSELLER_MANAGEMENT_FAIL,
          USER_SCRAPBUYERADMIN_MANAGEMENT_REQUEST,
          USER_SCRAPBUYERADMIN_MANAGEMENT_SUCCESS,
+         USER_SCRAPBUYERADMIN_MANAGEMENT_RESET,
          USER_SCRAPBUYERADMIN_MANAGEMENT_FAIL,
          USER_SCRAPBUYERSTAFF_MANAGEMENT_FAIL,
          USER_SCRAPBUYERSTAFF_MANAGEMENT_SUCCESS,
-         USER_SCRAPBUYERSTAFF_MANAGEMENT_REQUEST } from "../constants/userConstant";
+         USER_SCRAPSELLER_MANAGEMENT_RESET,
+         USER_SCRAPBUYERSTAFF_MANAGEMENT_RESET,
+         USER_SCRAPBUYERSTAFF_MANAGEMENT_REQUEST,
+         USER_SCRAPSELLER_FILTER_REQUEST,
+        USER_SCRAPSELLER_FILTER_SUCCESS,
+      USER_SCRAPSELLER_FILTER_RESET,
+    USER_SCRAPSELLER_FILTER_FAIL } from "../constants/userConstant";
 
          export const userLoginReducers = (state = {userInfo:{}}, action) => {
           switch(action.type){
@@ -38,10 +45,7 @@ USER_LOGIN_REQUEST,
               default:
                   return state    
           }
-      
       }       
-
-
 
 
   export const scrapBuyerAdminListReducer = (state = {users:[], loading:true, error:null}, action) => {
@@ -110,6 +114,10 @@ USER_LOGIN_REQUEST,
                       error: null,
                       user: action.payload
                     };
+                  case USER_SCRAPSELLER_MANAGEMENT_RESET:
+                      return {
+                        user: {}
+                    };    
                   case USER_SCRAPSELLER_MANAGEMENT_FAIL:
                     return { ...state, loading: false, error: action.payload };
                   default:
@@ -129,6 +137,11 @@ USER_LOGIN_REQUEST,
                         error: null,
                         user: action.payload
                       };
+
+                    case USER_SCRAPBUYERSTAFF_MANAGEMENT_RESET:
+                      return {
+                          user: {}
+                      };  
                     case USER_SCRAPBUYERSTAFF_MANAGEMENT_FAIL:
                       return { ...state, loading: false, error: action.payload };
                     default:
@@ -148,9 +161,37 @@ USER_LOGIN_REQUEST,
                           error: null,
                           user: action.payload
                         };
+                      case USER_SCRAPBUYERADMIN_MANAGEMENT_RESET:
+                        return {
+                          user: {}
+                        };   
                       case USER_SCRAPBUYERADMIN_MANAGEMENT_FAIL:
                         return { ...state, loading: false, error: action.payload };
                       default:
                         return state;
                     }
-                  };               
+                  };       
+                  
+                  
+      
+                  export const scrapSellerFilterReducer = (state = {filteredUsers:[]}, action) => {
+                    switch (action.type) {
+                        case USER_SCRAPSELLER_FILTER_REQUEST:
+                          return { ...state, loading: true };
+                        case USER_SCRAPSELLER_FILTER_SUCCESS:
+                          return {
+                            ...state,
+                            loading: false,
+                            error: null,
+                            filteredUsers: action.payload
+                          };
+                        case USER_SCRAPSELLER_FILTER_RESET:
+                            return {
+                              filteredUsers: []
+                          }    
+                        case USER_SCRAPSELLER_FILTER_FAIL:
+                          return { ...state, loading: false, error: action.payload };
+                        default:
+                          return state;
+                      }
+                    };             

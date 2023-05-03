@@ -63,13 +63,22 @@ export const listItems = () => async (dispatch, getState) => {
 }
 
 
-export const updateItem = (item) => async (dispatch) => {
+export const updateItem = (item) => async (dispatch, getState) => {
 
     try{
         dispatch({type:ITEM_UPDATE_REQUEST})
+
+        const {
+            userLogin: {userInfo},
+            itemList: {items}
+           
+            } = getState()
+
+
         const config = {
             headers:{
                 'Content-type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
             }
         }
         const { data } = await axios.put(
@@ -82,6 +91,17 @@ export const updateItem = (item) => async (dispatch) => {
             type:ITEM_UPDATE_SUCCESS,
             payload:data
         })
+
+        dispatch({
+            type:ITEM_LIST_SUCCESS,
+            payload:items.map((item) => {
+                if(item.id===data.id){
+                    return data
+                }else{
+                    return item
+                }
+            })
+        })
     }catch(error){
         dispatch({
             type:ITEM_UPDATE_FAIL,
@@ -89,20 +109,30 @@ export const updateItem = (item) => async (dispatch) => {
             ? error.response.data.detail
             : error.message,
         })
+        console.log(error.message)
     }
  }
 
- export const addItem = (item) => async (dispatch) => {
+ export const addItem = (item) => async (dispatch, getState) => {
 
     try{
         dispatch({type:ITEM_ADD_REQUEST})
+
+        const {
+            userLogin: {userInfo},
+            itemList: {items}
+           
+            } = getState()
+
+
         const config = {
             headers:{
                 'Content-type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
             }
         }
         const { data } = await axios.post(
-            `http://127.0.0.1:8000/api/admin/add/scrap-item/`,
+            `https://scrap-selling-app-server.onrender.com/api/admin/item-management/`,
             item,
             config
             )
@@ -110,6 +140,11 @@ export const updateItem = (item) => async (dispatch) => {
         dispatch({
             type:ITEM_ADD_SUCCESS,
             payload:data
+        })
+
+        dispatch({
+            type:ITEM_LIST_SUCCESS,
+            payload:[...items, data]
         })
     }catch(error){
         dispatch({
@@ -121,24 +156,37 @@ export const updateItem = (item) => async (dispatch) => {
     }
  }
 
- export const deleteItem = (itemId) => async (dispatch) => {
+ export const deleteItem = (itemId) => async (dispatch, getState) => {
      console.log("oom", itemId)
 
     try{
         dispatch({type:ITEM_DELETE_REQUEST})
+        const {
+            userLogin: {userInfo},
+            itemList: {items}
+           
+            } = getState()
+
+
         const config = {
             headers:{
                 'Content-type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
             }
         }
         const { data } = await axios.delete(
-            `http://127.0.0.1:8000/api/admin/delete/scrap-item/${itemId}/`,
+            `https://scrap-selling-app-server.onrender.com/api/admin/item-management/`,
             config
             )
 
         dispatch({
             type:ITEM_DELETE_SUCCESS,
             payload:data.itemId
+        })
+
+        dispatch({
+            type:ITEM_LIST_SUCCESS,
+            payload:[...items, data]
         })
     }catch(error){
         dispatch({
@@ -150,11 +198,27 @@ export const updateItem = (item) => async (dispatch) => {
     }
  }
 
- export const listCategories = () => async (dispatch) => {
+ export const listCategories = () => async (dispatch, getState) => {
 
     try{
         dispatch({type:CATEGORY_LIST_REQUEST})
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/admin/scrap-items/`)
+
+        const {
+            userLogin: {userInfo},
+           
+            } = getState()
+
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.get(
+            `https://scrap-selling-app-server.onrender.com/api/admin/category-management/`,
+            config
+            )
  
         dispatch({
             type:CATEGORY_LIST_SUCCESS,

@@ -19,7 +19,11 @@ USER_SCRAPBUYERADMIN_MANAGEMENT_SUCCESS,
 USER_SCRAPBUYERADMIN_MANAGEMENT_FAIL,
 USER_SCRAPBUYERSTAFF_MANAGEMENT_FAIL,
 USER_SCRAPBUYERSTAFF_MANAGEMENT_SUCCESS,
-USER_SCRAPBUYERSTAFF_MANAGEMENT_REQUEST  } from "../constants/userConstant";
+USER_SCRAPBUYERSTAFF_MANAGEMENT_REQUEST,
+USER_SCRAPSELLER_FILTER_REQUEST,
+        USER_SCRAPSELLER_FILTER_SUCCESS,
+      USER_SCRAPSELLER_FILTER_RESET,
+    USER_SCRAPSELLER_FILTER_FAIL  } from "../constants/userConstant";
 
 import axios from "axios" 
 
@@ -177,7 +181,8 @@ export const logout = () => (dispatch) => {
             console.log("req1")
             const {
                 userLogin: {userInfo},
-                scrapSellerList: {users}
+                scrapSellerList: {users},
+                scrapSellerFilter: {filteredUsers}
                
                 } = getState()
         
@@ -210,6 +215,19 @@ export const logout = () => (dispatch) => {
                     }
                 })
             })
+            
+            if(filteredUsers.length !== 0){
+            dispatch({
+                type:USER_SCRAPSELLER_FILTER_SUCCESS,
+                payload:filteredUsers.map((user) => {
+                    if(user.id===data.id){
+                        return data
+                    }else{
+                        return user
+                    }
+                })
+            })
+           }
 
             
         }catch(error){
@@ -327,3 +345,36 @@ export const logout = () => (dispatch) => {
             })
         }
      } 
+
+
+     export const filterScrapSellerList = (accountStatus, userId, joinedDate) => async (dispatch, getState) => {
+
+        try{
+            dispatch({type:USER_SCRAPSELLER_FILTER_REQUEST})
+    
+            const {
+                scrapSellerList: {users},
+                } = getState()
+
+    
+            const userFilter = users.filter((user) => {
+                    if((accountStatus ? user.is_active : true)  && (joinedDate ? user.date_joined.slice(0, 10)===joinedDate : true)  && (userId ? (user.id===Number(userId) || user.username===userId || user.first_name===userId) : true)){
+                        return user
+                    } 
+                })
+              
+    
+            dispatch({
+                type:USER_SCRAPSELLER_FILTER_SUCCESS,
+                payload: userFilter
+            })
+    
+        }catch(error){
+            dispatch({
+                type:USER_SCRAPSELLER_FILTER_FAIL,
+                payload:error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+            })
+        }
+     }     

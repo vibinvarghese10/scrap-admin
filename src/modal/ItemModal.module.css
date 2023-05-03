@@ -1,0 +1,42 @@
+
+
+form input, form select, .dltContainer input{
+    background-color: "lightgray";
+    width: 100%;
+    margin-bottom: 10px;
+    border-color: #dddddd;
+    border-radius: 5px;
+    border-style: solid;
+    background-color: #dddddd;
+    height: 45px;
+    outline: none;
+}
+
+.btnContainer{
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+}
+
+.btnContainer button, .dltContainer button{
+    width: 48%;
+    border-radius: 10px;
+    height: 40px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.confirmBtn{
+    border-color: dodgerblue;
+    color: dodgerblue;
+}
+
+.cancelBtn{
+    border-color: red;
+    color: red;
+}
+
+.btnContainer button h1{
+    margin: auto;
+}
+

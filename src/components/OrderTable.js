@@ -1,30 +1,48 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders } from '../actions/orderActions';
 import styles from './Table.module.css';
-import FilterButton from './FilterButton';
+import OrderTableFilter from './OrderTableFilter';
+import { filterOrderList } from '../actions/orderActions';
+
 
 
 
 function OrderTable() {
   const dispatch = useDispatch()
 
+  const [orderStatus, setOrderStatus] = useState("")
+  const [orderId, setOrderId] = useState(null)
+  const [totalPrice, setTotalPrice] = useState(null)
+  const [acceptedDate, setAcceptedDate] = useState(null)
+  const [completedDate, setCompletedDate] = useState(null)
+
+
   const allCompletedOrderList = useSelector(state => state.orderList)
   const {orders} = allCompletedOrderList
 
-  console.log("orders", orders)
+  const {orders:filteredOrder, loading} = useSelector(state => state.orderFilter)
+
+
 
   useEffect(() => {
     dispatch(listOrders())
-
   }, [])
+
+  useEffect(() => {
+
+      dispatch(filterOrderList(orderStatus, orderId, totalPrice, acceptedDate, completedDate))
+
+
+  }, [orderStatus, orderId, totalPrice, acceptedDate, completedDate])
 
 
   return (
  
 
-
+<>
+<OrderTableFilter setAcceptedDate={setAcceptedDate} setCompletedDate={setCompletedDate} orderStatus={orderStatus} setOrderStatus={setOrderStatus} orderId={orderId} setOrderId={setOrderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
 <div className={styles.tableContainer}>
 <table>
 
@@ -42,15 +60,17 @@ function OrderTable() {
 </tr>
 
 
-{orders.map((order, index) => (
+{orderStatus || orderId || totalPrice || acceptedDate || completedDate ? ( filteredOrder.map((order, index) => (
           <tr>
           <td>{index+1}</td>
           <td>{order.id}</td>
-          <td>
+          <td className={styles.itemColumn}>
+          {order.sellRequest.data.length} Items
+          <div className={styles.itemColumnContainer}>
           {order.sellRequest.data.map((x, index) => (
-            <>{x.itemName} | </>
-
+            <div>{x.itemName}</div>
           ))}
+          </div>
           </td>
           
           <td>{order.sellRequest.requestedUser.first_name}</td>
@@ -58,17 +78,44 @@ function OrderTable() {
           <td>{order.acceptedDate}</td>
           <td>{order.requestStatus}</td>
           <td>{order.completedUser}</td>
-          <td>{order.completedDate}</td>
+          <td>{order.completedDate?.slice(0, 10)}</td>
           <td>Rs {order.totalPrice}</td>
         </tr>
 
-        ))}
+        ))) : (
+          orders.map((order, index) => (
+            <tr>
+            <td>{index+1}</td>
+            <td>{order.id}</td>
+            <td className={styles.itemColumn}>
+            {order.sellRequest.data.length} Items
+            <div className={styles.itemColumnContainer}>
+            {order.sellRequest.data.map((x, index) => (
+              <div>{x.itemName}</div>
+  
+            ))}
+            </div>
+            </td>
+            
+            <td>{order.sellRequest.requestedUser.first_name}</td>
+            <td>{order.acceptedUser}</td>
+            <td>{order.acceptedDate}</td>
+            <td>{order.requestStatus}</td>
+            <td>{order.completedUser}</td>
+            <td>{order.completedDate?.slice(0, 10)}</td>
+            <td>Rs {order.totalPrice}</td>
+          </tr>
+  
+          ))
+
+        )}
 
 
 
 </table>
-<FilterButton />
+
 </div>
+</>
 
   )
 }

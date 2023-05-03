@@ -1,0 +1,81 @@
+.filterContainer{
+    background-color: #dddddd;
+    padding: 10px;
+    height: 60px;
+    display: flex;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow-x: auto;
+
+}
+
+.searchInput, .datePicker{
+    background-color: #e7eae5;
+    outline: none;
+    width: 40%;
+    height: 40px;
+    margin: auto auto auto auto;
+    transition: width 1s;
+    color: gray;
+}
+
+
+@media screen and (max-width: 768px) {
+    .searchInput, .selectBox, .datePicker{
+        min-width: 170px;
+        margin: auto 10px auto 0;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+ 
+  .filterContainer:hover{
+      justify-content: center;
+  }  
+    
+ .selectBox, .datePicker{
+    display: none;
+ }   
+
+.filterContainer:hover .searchInput{
+    width: 20%;
+    margin: auto 0 auto 0;
+    cursor: pointer;
+}
+
+.filterContainer:hover .selectBox{
+    display: block;
+    width: 20%;
+    margin: auto 0 auto 10px;
+    cursor: pointer;
+}
+
+.filterContainer:hover .datePicker{
+    display: block;
+    width: 20%;
+    margin: auto 0 auto 10px;
+    cursor: pointer;
+}
+}
+
+
+
+
+.selectBox{
+    width: 120px;
+    height: 40px;
+    border-color: #e7eae5;
+    border-radius: 5px;
+    border-style: solid;
+    background-color: #e7eae5;
+    color: gray;
+}
+
+
+
+
+
+
+

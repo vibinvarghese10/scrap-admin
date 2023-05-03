@@ -1,13 +1,26 @@
 .categoryContainer{
     margin-top: 10px;
     font-family: "Lucida Console", "Courier New", monospace;
+    border-bottom: #dddddd;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 }
 
 .categoryHeader p{
-    font-family: "Lucida Console", "Courier New", monospace;
     font-size: 20px;
     /*background-color:darkcyan;*/
-    margin: auto 15px;
+    margin: auto 5px;
+}
+
+.categoryHeader h1{
+    /*background-color:darkcyan;*/
+    margin: auto 5px;
+    color: dodgerblue;
+}
+
+.categoryHeader h1:hover{
+    cursor: pointer;
+    color: #e7eae5;
 }
 
 
@@ -19,10 +32,53 @@
 
 .categoryItem {
     height: 45px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border-radius: 5px;
+}
 
+.addInputContainer, .updateInputContainer, .deleteInputContainer{
+
+    display: flex;
+    margin: 5px 0 5px 0;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.addInputContainer input, .updateInputContainer input, .deleteInputContainer input{
+    background-color: #dddddd;
+    outline: none;
+    flex: 8;
+    margin-right: 5px;
+}
+
+.addInputContainer button, .updateInputContainer button, .deleteInputContainer button{
+    flex: 1;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 0.01px;
+    border-color: dodgerblue;
+    color: dodgerblue;
+    background-color: #e7eae5;
+}
+
+.deleteInputContainer button{
+    border-color: red;
+    color: red;
+    background-color: #e7eae5;
+
+}
+
+.updateInputContainer div, .deleteInputContainer div{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addInputContainer button h1{
+    margin:auto;
 }
 
 .categoryItem:hover{
@@ -31,6 +87,19 @@
 
 .categoryItem p{
     margin: auto auto auto 20px;
+}
+
+.btnContainers{
+    margin: 0 20px 0 0;
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnContainers i:hover, .updateInputContainer div i:hover, .deleteInputContainer div i:hover{
+    cursor: pointer;
+    
 }
 
 
@@ -42,15 +111,8 @@
     display: flex;
     flex-direction: row; 
     justify-content: space-between;
+    padding: 0 10px;
 }
 
-.categoryFooter button{
-    height: 40px;
-    width: 100%;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: dodgerblue;
-    border-width: 0.5px;
-    
-}
+
 

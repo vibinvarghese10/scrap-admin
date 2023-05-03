@@ -10,7 +10,14 @@ import { ORDER_LIST_REQUEST,
      SELLREQUEST_MANAGEMENT_REQUEST,
     SELLREQUEST_MANAGEMENT_SUCCESS,
     SELLREQUEST_MANAGEMENT_RESET,
-  SELLREQUEST_MANAGEMENT_FAIL } from "../constants/orderConstant";
+  SELLREQUEST_MANAGEMENT_FAIL,
+  ORDER_FILTER_REQUEST,
+ORDER_FILTER_SUCCESS,
+ORDER_FILTER_FAIL,
+SELLREQUEST_FILTER_REQUEST,
+SELLREQUEST_FILTER_SUCCESS,
+SELLREQUEST_FILTER_FAIL,
+SELLREQUEST_FILTER_RESET } from "../constants/orderConstant";
 
 
      const initialState = {
@@ -97,4 +104,44 @@ import { ORDER_LIST_REQUEST,
                   default:
                     return state;
                 }
-              };     
+              }; 
+              
+              
+              export const orderFilterReducers = (state = {orders: [], loading: false}, action) => {
+                switch (action.type) {
+                    case ORDER_FILTER_REQUEST:
+                      return { ...state, loading: true };
+                    case ORDER_FILTER_SUCCESS:
+                      return {
+                        ...state,
+                        loading: false,
+                        orders: action.payload
+                      };
+                    case ORDER_FILTER_FAIL:
+                      return { ...state, loading: false, error: action.payload };
+                      
+                    default:
+                      return state;
+                  }
+                }; 
+                
+                export const sellrequestFilterReducers = (state = {filteredSellRequests: [], loading: false}, action) => {
+                  switch (action.type) {
+                      case SELLREQUEST_FILTER_REQUEST:
+                        return { ...state, loading: true };
+                      case SELLREQUEST_FILTER_SUCCESS:
+                        return {
+                          ...state,
+                          loading: false,
+                          filteredSellRequests: action.payload,
+                        };
+                      case SELLREQUEST_FILTER_FAIL:
+                        return { ...state, loading: false, error: action.payload };
+                      
+                      case SELLREQUEST_FILTER_RESET:
+                        return {filteredSellRequests:[]}  
+                        
+                      default:
+                        return state;
+                    }
+                  };          

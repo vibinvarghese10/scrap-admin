@@ -1,23 +1,54 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import {  scrapBuyerAdminList } from '../actions/userAction';
 import styles from './Table.module.css';
-import { scrapBuyerAdminManagement } from '../actions/userAction';
+import { scrapBuyerAdminManagement, scrapBuyerAdminList } from '../actions/userAction';
+import Flash from './Flash';
+import {USER_SCRAPBUYERADMIN_MANAGEMENT_RESET} from '../constants/userConstant';
+import AdminTableFilter from './AdminTableFilter';
 
 function ScrapBuyerAdmin() {
   const dispatch = useDispatch()
 
+  let [visibility, setVisibility] = useState(false);
+  let [message, setMessage] = useState("");
+  let [type, setType] = useState(false);
+
   const allScrapBuyerAdmin = useSelector(state => state.scrapBuyerAdminList)
   const {users} = allScrapBuyerAdmin
+
+  const scrapBuyerAdminManagementVar = useSelector(state => state.scrapBuyerAdminManagement)
+  const {user} = scrapBuyerAdminManagementVar
 
   console.log("buyeraddmin", users)
 
   useEffect(() => {
-    dispatch( scrapBuyerAdminList())
+  if(users.length===0){
+    dispatch(scrapBuyerAdminList())
+  }
 
-  }, [])
+ 
+    if(Object.keys(user).length!==0){
+      if(!user.is_active){
+        setVisibility(true)
+        setMessage("User account has been deactivated")
+        setType("red")
+        dispatch({type:USER_SCRAPBUYERADMIN_MANAGEMENT_RESET})
+      }else if(user.is_active){
+        setVisibility(true)
+        setMessage("User account has been activated")
+        setType("blue")
+        dispatch({type:USER_SCRAPBUYERADMIN_MANAGEMENT_RESET})
+
+      }
+      
+    }
+
+  }, [user])
+
   return (
 
+<>
+<AdminTableFilter />
 <div className={styles.tableContainer}>
 <table>
 
@@ -56,7 +87,9 @@ function ScrapBuyerAdmin() {
 
 
 </table>
+<Flash visibility={visibility} setVisibility={setVisibility} type={type} message={message}/>
 </div>
+</>
   )
 }
 

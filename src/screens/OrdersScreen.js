@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 function OrdersScreen() {
   const [tab, setTab] = useState("Orders")
 
@@ -33,10 +34,10 @@ function OrdersScreen() {
   <div className={styles.tabColumn, styles.item} onClick={() => setTab("Sell requests")} style={tab==="Sell requests" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
   <p className={styles.tabTitle}>Sell requests</p>
   </div>
+  <div className={styles.tabColumn} style={{overflowX:"auto"}}> 
 
-
-
-  <div className={styles.tabColumn} style={{overflowX:"auto"}}> {tab==="Orders" ? <OrderTable /> : <SellRequestsTable />}</div>
+  {tab==="Orders" ? <OrderTable /> : <SellRequestsTable />}
+  </div>
 
 </div>
   );

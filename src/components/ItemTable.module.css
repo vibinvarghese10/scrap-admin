@@ -14,23 +14,39 @@
     margin: 20px 20px 0px 20px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+
 
 }
 
   .tableHeader h3{
-      font-size: 25px;
+      font-size: 30px;
       font-weight: 600;
+      margin: auto auto auto 0;
   }
 
-  .tableHeader select{
+  .tableHeader select, .tableHeader button{
     width: 120px;
     height: 35px;
     border-color: #dddddd;
     border-radius: 5px;
     border-style: solid;
     background-color: #dddddd;
-    
+    margin-left: 10px;
+}
+
+.tableHeaderRight{
+    display: flex;
+    align-items: center;
+}
+
+.tableHeader button{
+    border-color: #dddddd;
+    display: flex;
+
+}
+
+.tableHeader button h1{
+    margin: auto;
 }
 
 .edtBtn, .dltBtn {
@@ -40,10 +56,26 @@
 }
 .edtBtn{
     border-color: dodgerblue;
+    color: dodgerblue;
 }
 
 .dltBtn{
     border-color: red;
+    color: red;
+}
+
+@media screen and (max-width: 768px) {
+    .tableHeader select, .tableHeader button{
+        width: 80px;
+        height: 30px;
+       
+    
+    }
+
+    .tableContainer{
+        margin: 20px 0 20px 0;
+    }
+
 }
 
 

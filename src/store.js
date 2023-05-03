@@ -1,8 +1,8 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { itemListReducers, itemUpdateReducers, itemAddReducers, itemDeleteReducers, categoryListReducers, itemFilterReducers } from './reducers/itemReducer'
-import { orderListReducers, statInfoReducer, sellRequestListReducers, sellRequestManagementReducers } from './reducers/orderReducer'
-import { scrapBuyerAdminListReducer, scrapSellerManagementReducer, scrapBuyerAdminManagementReducer, scrapBuyerStaffManagementReducer, scrapBuyerStaffListReducer, scrapSellerListReducer, userLoginReducers } from './reducers/userReducer'
+import { orderListReducers, sellrequestFilterReducers, orderFilterReducers, statInfoReducer, sellRequestListReducers, sellRequestManagementReducers } from './reducers/orderReducer'
+import { scrapBuyerAdminListReducer, scrapSellerFilterReducer, scrapSellerManagementReducer, scrapBuyerAdminManagementReducer, scrapBuyerStaffManagementReducer, scrapBuyerStaffListReducer, scrapSellerListReducer, userLoginReducers } from './reducers/userReducer'
 
 import { composeWithDevTools } from 'redux-devtools-extension'
 
@@ -26,9 +26,10 @@ const reducer = combineReducers({
     scrapBuyerAdminManagement:scrapBuyerAdminManagementReducer,
     statInfo:statInfoReducer,
     sellRequestManagement:sellRequestManagementReducers,
-    itemFilter:itemFilterReducers
-
-    
+    itemFilter:itemFilterReducers,
+    orderFilter:orderFilterReducers,
+    sellrequestFilter:sellrequestFilterReducers,
+    scrapSellerFilter:scrapSellerFilterReducer,
 })
 
 

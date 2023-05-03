@@ -1,10 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 
 function Flash(props) {
-    
-    let [message, setMessage] = useState('');
-    let [type, setType] = useState('');
-    console.log("visibility", props.visibility)
+
 
     useEffect(() => {
          if(props.visibility===true){

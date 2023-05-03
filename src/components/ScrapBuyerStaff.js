@@ -1,25 +1,54 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import {  scrapBuyerStaffList } from '../actions/userAction';
 import styles from './Table.module.css';
 import { scrapBuyerStaffManagement } from '../actions/userAction';
+import Flash from './Flash';
+import { USER_SCRAPBUYERSTAFF_MANAGEMENT_RESET } from '../constants/userConstant';
+import StaffTableFilter from './StaffTableFilter';
 
 function ScrapBuyerStaff() {
   const dispatch = useDispatch()
 
+  let [visibility, setVisibility] = useState(false);
+  let [message, setMessage] = useState("");
+  let [type, setType] = useState(false);
+
   const allScrapBuyerStaff = useSelector(state => state.scrapBuyerStaffList)
   const {users} = allScrapBuyerStaff
+
+  const scrapBuyerStaffManagementVar = useSelector(state => state.scrapBuyerStaffManagement)
+  const {user} = scrapBuyerStaffManagementVar
 
   console.log("buyerstaff", users)
 
   useEffect(() => {
+    if(users.length===0){
     dispatch( scrapBuyerStaffList())
+    }
 
-  }, [])
+     
+    if(Object.keys(user).length!==0){
+      if(!user.is_active){
+        setVisibility(true)
+        setMessage("User account has been deactivated")
+        setType("red")
+        dispatch({type:USER_SCRAPBUYERSTAFF_MANAGEMENT_RESET})
+      }else if(user.is_active){
+        setVisibility(true)
+        setMessage("User account has been activated")
+        setType("blue")
+        dispatch({type:USER_SCRAPBUYERSTAFF_MANAGEMENT_RESET})
+
+      }
+      
+    }
+
+  }, [user])
 
   return (
-
+<><StaffTableFilter />
 <div className={styles.tableContainer}>
 <table>
 
@@ -52,7 +81,9 @@ function ScrapBuyerStaff() {
 
 
 </table>
+<Flash visibility={visibility} setVisibility={setVisibility} type={type} message={message}/>
 </div>
+</>
   )
 }
 

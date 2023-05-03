@@ -1,5 +1,5 @@
 .tableContainer{
-    margin: 20px;
+    margin: 0px;
     border-radius: 10px;
     border-color: #dddddd;
     border-width: 1px;
@@ -21,4 +21,24 @@
 .redBtn{
     border-color: red;
     color: red;
+}
+
+.itemColumn:hover{
+    background-color: blueviolet;
+    cursor: pointer;
+    
+}
+
+.itemColumnContainer{
+    display: none;
+    position: absolute;
+    background-color: #e7eae5;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.itemColumn:hover .itemColumnContainer{
+    display: block;
 }
