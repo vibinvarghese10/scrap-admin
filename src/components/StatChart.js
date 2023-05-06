@@ -1,9 +1,9 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import styles from './StatChart.module.css';
-import { CategoryScale, Chart } from "chart.js";
+import { Chart, registerables } from "chart.js";
 
-Chart.register(CategoryScale);
+Chart.register(...registerables);
 
 const labels = ["January", "February", "March", "April", "May", "June"];
 
