@@ -3,7 +3,6 @@ import {
       BrowserRouter as Router,
       Routes,
       Route,
-      Link
   } from 'react-router-dom';
   import Header from './components/Header';
   import Footer from './components/Footer';
@@ -13,7 +12,7 @@ import {
   import ItemsScreen from './screens/ItemsScreen';
   import SigninScreen from './screens/SigninScreen';
   import GridScreen from './screens/GridScreen';
-  import { useEffect } from 'react';
+  import React, { useEffect } from 'react';
   import { useDispatch, useSelector } from 'react-redux';
   import { USER_LOGIN_SUCCESS } from './constants/userConstant';
   import jwtDecode from 'jwt-decode';

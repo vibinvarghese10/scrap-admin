@@ -1,6 +1,5 @@
 import InfoBox from '../components/InfoBox'
 import StatChart from '../components/StatChart'
-import Table from 'react-bootstrap/Table';
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllStatInfo, listOrders } from '../actions/orderActions';
@@ -64,6 +63,7 @@ function HomeScreen() {
       <StatChart />
 
       </div>
+
       
     </div>
 

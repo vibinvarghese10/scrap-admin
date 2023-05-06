@@ -17,7 +17,16 @@ import { ITEM_LIST_REQUEST,
       CATEGORY_LIST_FAIL,
       ITEM_FILTER_REQUEST,
       ITEM_FILTER_SUCCESS,
-    ITEM_FILTER_FAIL } from "../constants/itemConstant";
+    ITEM_FILTER_FAIL,
+    CATEGORY_ADD_REQUEST,
+    CATEGORY_ADD_SUCCESS,
+    CATEGORY_ADD_FAIL,
+    CATEGORY_UPDATE_REQUEST,
+    CATEGORY_UPDATE_SUCCESS,
+    CATEGORY_UPDATE_FAIL,
+    CATEGORY_DELETE_REQUEST,
+    CATEGORY_DELETE_SUCCESS,
+    CATEGORY_DELETE_FAIL } from "../constants/itemConstant";
 
 import axios from "axios"     
 
@@ -121,7 +130,6 @@ export const updateItem = (item) => async (dispatch, getState) => {
         const {
             userLogin: {userInfo},
             itemList: {items}
-           
             } = getState()
 
 
@@ -175,7 +183,7 @@ export const updateItem = (item) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.delete(
-            `https://scrap-selling-app-server.onrender.com/api/admin/item-management/`,
+            `https://scrap-selling-app-server.onrender.com/api/admin/item-management/?id=${itemId}`,
             config
             )
 
@@ -186,7 +194,7 @@ export const updateItem = (item) => async (dispatch, getState) => {
 
         dispatch({
             type:ITEM_LIST_SUCCESS,
-            payload:[...items, data]
+            payload:items.filter(item => item.id!==itemId)
         })
     }catch(error){
         dispatch({
@@ -227,6 +235,140 @@ export const updateItem = (item) => async (dispatch, getState) => {
     }catch(error){
         dispatch({
             type:CATEGORY_LIST_FAIL,
+            payload:error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+ }
+
+ export const addCategory = (category) => async (dispatch, getState) => {
+
+    try{
+        dispatch({type:CATEGORY_ADD_REQUEST})
+
+        const {
+            userLogin: {userInfo},
+            categoryList: {categories}
+            } = getState()
+
+
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+        const { data } = await axios.post(
+            `https://scrap-selling-app-server.onrender.com/api/admin/category-management/`,
+            category,
+            config
+            )
+
+        dispatch({
+            type:CATEGORY_ADD_SUCCESS,
+            payload:data
+        })
+
+        dispatch({
+            type:CATEGORY_LIST_SUCCESS,
+            payload:[...categories, data]
+        })
+    }catch(error){
+        dispatch({
+            type:CATEGORY_ADD_SUCCESS,
+            payload:error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+ }
+
+
+ export const updateCategory = (category) => async (dispatch, getState) => {
+
+    try{
+        dispatch({type:CATEGORY_UPDATE_REQUEST})
+
+        const {
+            userLogin: {userInfo},
+            categoryList: {categories}
+            } = getState()
+
+
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+        const { data } = await axios.put(
+            `https://scrap-selling-app-server.onrender.com/api/admin/category-management/`,
+            category,
+            config
+            )
+
+        dispatch({
+            type:CATEGORY_UPDATE_SUCCESS,
+            payload:data
+        })
+
+        dispatch({
+            type:CATEGORY_LIST_SUCCESS,
+            payload:categories.map((category) => {
+                if(category.id===data.id){
+                    return data
+                }else{
+                    return category
+                }
+            })
+        })
+    }catch(error){
+        dispatch({
+            type:CATEGORY_UPDATE_FAIL,
+            payload:error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+ }
+
+
+ export const deleteCategory = (categoryId) => async (dispatch, getState) => {
+
+    try{
+        dispatch({type:CATEGORY_DELETE_REQUEST})
+
+        const {
+            userLogin: {userInfo},
+            categoryList: {categories}
+            } = getState()
+
+
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+        const { data } = await axios.delete(
+            `https://scrap-selling-app-server.onrender.com/api/admin/category-management?id=${categoryId}`,
+            config
+            )
+
+        dispatch({
+            type:CATEGORY_DELETE_SUCCESS,
+            payload:data
+        })
+
+        dispatch({
+            type:CATEGORY_LIST_SUCCESS,
+            payload:categories.filter(category => category.id!==categoryId)
+        })
+
+    }catch(error){
+        dispatch({
+            type:CATEGORY_DELETE_FAIL,
             payload:error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,

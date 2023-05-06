@@ -79,7 +79,7 @@ function ItemTable(props) {
     <td>{index+1}</td>
     <td>{item.itemName}</td>
     <td>₹ {item.rate}</td>
-    <td>{item.category.categoryName}</td>
+    <td>{item?.category?.categoryName}</td>
     <td>{item.unit}</td>
     <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Update"), setSelectedItem(item))} type='button' className={styles.edtBtn}>Edit</button></td>
     <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Delete"), setSelectedItem(item))} type='button' className={styles.dltBtn}>Delete</button></td>
@@ -90,7 +90,7 @@ function ItemTable(props) {
     <td>{index+1}</td>
     <td>{item.itemName}</td>
     <td>₹ {item.rate}</td>
-    <td>{item.category.categoryName}</td>
+    <td>{item?.category?.categoryName}</td>
     <td>{item.unit}</td>
     <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Update"), setSelectedItem(item))} type='button' className={styles.edtBtn}>Edit</button></td>
     <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Delete"), setSelectedItem(item))} type='button' className={styles.dltBtn}>Delete</button></td>

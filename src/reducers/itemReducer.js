@@ -21,7 +21,16 @@ import { ITEM_LIST_REQUEST,
     CATEGORY_LIST_FAIL,
     ITEM_FILTER_REQUEST,
   ITEM_FILTER_SUCCESS,
-ITEM_FILTER_FAIL  } from "../constants/itemConstant"
+ITEM_FILTER_FAIL,
+CATEGORY_ADD_REQUEST,
+CATEGORY_ADD_SUCCESS,
+CATEGORY_ADD_FAIL,
+CATEGORY_UPDATE_REQUEST,
+CATEGORY_UPDATE_SUCCESS,
+CATEGORY_UPDATE_FAIL,
+CATEGORY_DELETE_REQUEST,
+CATEGORY_DELETE_SUCCESS,
+CATEGORY_DELETE_FAIL  } from "../constants/itemConstant"
 
 
      
@@ -153,7 +162,71 @@ ITEM_FILTER_FAIL  } from "../constants/itemConstant"
                   default:
                     return state;
                 }
-              };        
+              };    
+
+
+              export const categoryAddReducers = (state = {category:[], loading:false, error:null}, action) => {
+              switch (action.type) {
+                  case CATEGORY_ADD_REQUEST:
+                    return { ...state, loading: true };
+  
+                  case CATEGORY_ADD_SUCCESS:
+                    return {
+                      ...state,
+                      loading: false,
+                      error: null,
+                      category: action.payload,
+                    };
+    
+                  case CATEGORY_ADD_FAIL:
+                    return { ...state, loading: false, error: action.payload };
+                    
+                  default:
+                    return state;
+                }
+              }; 
+              
+              export const categoryUpdateReducers = (state = {category:[], loading:false, error:null}, action) => {
+                switch (action.type) {
+                    case CATEGORY_UPDATE_REQUEST:
+                      return { ...state, loading: true };
+    
+                    case CATEGORY_UPDATE_SUCCESS:
+                      return {
+                        ...state,
+                        loading: false,
+                        error: null,
+                        category: action.payload,
+                      };
+      
+                    case CATEGORY_UPDATE_FAIL:
+                      return { ...state, loading: false, error: action.payload };
+                      
+                    default:
+                      return state;
+                  }
+                }; 
+
+                export const categoryDeleteReducers = (state = {category:[], loading:false, error:null}, action) => {
+                  switch (action.type) {
+                      case CATEGORY_DELETE_REQUEST:
+                        return { ...state, loading: true };
+      
+                      case CATEGORY_DELETE_SUCCESS:
+                        return {
+                          ...state,
+                          loading: false,
+                          error: null,
+                          category: action.payload,
+                        };
+        
+                      case CATEGORY_DELETE_FAIL:
+                        return { ...state, loading: false, error: action.payload };
+                        
+                      default:
+                        return state;
+                    }
+                  };   
 
 
               export const itemFilterReducers = (state = {items:[], loading:false}, action) => {

@@ -4,9 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateItem, addItem, deleteItem } from '../actions/itemAction';
 import styles from './ItemModal.module.css';
 
-
-
-
 const customStyles = {
 
   overlay: {
@@ -29,21 +26,18 @@ const customStyles = {
     },
   };
 
-
-
-
 function ItemModal(props) {
+    const dispatch = useDispatch()
+
     const [itemId, setItemId] = useState(null)
     const [itemName, setItemName] = useState("")
     const [rate, setRate] = useState("")
     const [measurement, setMeasurement] = useState("")
     const [category, setCategory] = useState("")
 
-    const dispatch = useDispatch()
+    const [deleteConfirmationText, setDeleteConfirmationText] = useState("")
 
     const {categories} = useSelector(state => state.categoryList)
-
-    console.log("ppo", props.itemModalType)
 
     useEffect(() => {
       if(props.itemModalType==="Update" || props.itemModalType==="Create"){
@@ -70,7 +64,9 @@ function ItemModal(props) {
 
     const deleteSubmitHandler = () => {
       dispatch(deleteItem(props.item.id))
+      setDeleteConfirmationText("")
      props.setItemModalStatus(false)
+     props.setSelectedItem({})
     }
 
   return (
@@ -83,9 +79,9 @@ function ItemModal(props) {
   >
      { props.itemModalType==="Delete" ? (
        <div className={styles.dltContainer}>
-       <input type={"text"}  placeholder={'type "'+props.item.itemName +'"'} value={itemName}/>
+       <input type={"text"} onChange={(e) => setDeleteConfirmationText(e.target.value)} placeholder={'type "'+props.item.itemName +'"'} />
        <div className={styles.btnContainer}>
-         <button className={styles.cancelBtn} onClick={() => props.itemModalType==="Create" ? addSubmitHandler() : props.itemModalType==="Update" ? updateSubmitHandler() : null}><h1>Delete</h1></button>
+         <button className={styles.cancelBtn} onClick={() => deleteSubmitHandler()} disabled={deleteConfirmationText!==props.item.itemName}><h1>Delete</h1></button>
          <button className={styles.confirmBtn} onClick={() => (props.setItemModalStatus(false), props.setSelectedItem({}))}><h1>Cancel</h1></button>
          </div>
       </div>
