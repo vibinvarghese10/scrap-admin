@@ -39,6 +39,25 @@ function Categories() {
   useEffect(() => {
     dispatch(listCategories())
   }, [dispatch])
+
+  const addBtnHandler = () => {
+    setAddStatus(true)
+    setUpdateStatus(null)
+    setDeleteStatus(null)
+  }
+
+  const editBtnHandler = (category) => {
+    setUpdateStatus(category)
+    setAddStatus(false)
+    setDeleteStatus(null)
+    setCategoryUpdateInput(category.categoryName)
+  }
+
+  const deletetBtnHandler = (category) => {
+    setDeleteStatus(category) 
+    setAddStatus(false)
+    setUpdateStatus(null)
+  }
   return (
 
     <div className={styles.categoryContainer}>
@@ -49,7 +68,7 @@ function Categories() {
      {addStatus ? (
        <h1 onClick={() => setAddStatus(false)}>Close</h1>
      ) : (
-      <h1 onClick={() => (setAddStatus(true), setUpdateStatus(null), setDeleteStatus(null))}>Add</h1>
+      <h1 onClick={() => addBtnHandler()}>Add</h1>
 
      )}
      
@@ -90,8 +109,8 @@ function Categories() {
             <div key={index} className={styles.categoryItem}>
             <p>{category.categoryName}</p>
             <div className={styles.btnContainers}>
-            <i onClick={() => (setUpdateStatus(category), setAddStatus(false), setDeleteStatus(null), setCategoryUpdateInput(category.categoryName))} className="fa fa-edit fa-1x"></i>
-            <i onClick={() => (setDeleteStatus(category), setAddStatus(false), setUpdateStatus(null))} className="fa fa-trash fa-1x"></i>
+            <i onClick={() => editBtnHandler(category)} className="fa fa-edit fa-1x"></i>
+            <i onClick={() => deletetBtnHandler(category)} className="fa fa-trash fa-1x"></i>
             </div>
             </div>
           )}

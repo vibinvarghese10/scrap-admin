@@ -13,7 +13,7 @@ import {
   import SigninScreen from './screens/SigninScreen';
   import GridScreen from './screens/GridScreen';
   import React, { useEffect } from 'react';
-  import { useDispatch, useSelector } from 'react-redux';
+  import { useDispatch } from 'react-redux';
   import { USER_LOGIN_SUCCESS } from './constants/userConstant';
   import jwtDecode from 'jwt-decode';
   import './App.css';

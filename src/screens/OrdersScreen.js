@@ -26,12 +26,12 @@ function OrdersScreen() {
 
   return (
     <div className={styles.tabContainer}>
-<div className={styles.tabColumn, styles.item}  onClick={() => setTab("Orders")} style={tab==="Orders" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
+<div className={`${styles.tabColumn} ${styles.item}`}  onClick={() => setTab("Orders")} style={tab==="Orders" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
   <p className={styles.tabTitle}>Orders</p>
 
   </div>
   
-  <div className={styles.tabColumn, styles.item} onClick={() => setTab("Sell requests")} style={tab==="Sell requests" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
+  <div className={`${styles.tabColumn} ${styles.item}`} onClick={() => setTab("Sell requests")} style={tab==="Sell requests" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
   <p className={styles.tabTitle}>Sell requests</p>
   </div>
   <div className={styles.tabColumn} style={{overflowX:"auto"}}> 

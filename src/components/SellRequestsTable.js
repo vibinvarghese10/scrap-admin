@@ -52,7 +52,7 @@ function SellRequestsTable() {
       
     }
 
-  }, [sellRequest])
+  }, [sellRequest, dispatch, sellRequests.length])
 
 
   useEffect(() => {

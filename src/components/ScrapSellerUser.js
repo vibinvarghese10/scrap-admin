@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import {  scrapSellerList } from '../actions/userAction';
 import styles from './Table.module.css';
@@ -54,7 +53,7 @@ function ScrapSellerUser() {
       
     }
 
-  }, [user])
+  }, [user, dispatch, users.length])
 
   useEffect(() => {
 
@@ -65,7 +64,7 @@ function ScrapSellerUser() {
     }
 
 
-  }, [accountStatus, userId, joinedDate])
+  }, [accountStatus, userId, joinedDate, dispatch])
   return (
 <>
 <SellerTableFilter setJoinedDate={setJoinedDate} setUserId={setUserId} accountStatus={accountStatus} setAccountStatus={setAccountStatus}/>

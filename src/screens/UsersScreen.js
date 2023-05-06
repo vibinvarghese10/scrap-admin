@@ -25,16 +25,16 @@ function UsersScreen() {
   
   return (
     <div className={styles.tabContainer}>
-    <div className={styles.tabColumn, styles.item}  onClick={() => setTab("Scrap seller")} style={tab==="Scrap seller" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
+    <div className={`${styles.tabColumn} ${styles.item}`}  onClick={() => setTab("Scrap seller")} style={tab==="Scrap seller" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
       <p className={styles.tabTitle}>Seller</p>
     
       </div>
       
-      <div className={styles.tabColumn, styles.item} onClick={() => setTab("Scrap buyer admin")} style={tab==="Scrap buyer admin" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
+      <div className={`${styles.tabColumn} ${styles.item}`} onClick={() => setTab("Scrap buyer admin")} style={tab==="Scrap buyer admin" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
       <p className={styles.tabTitle}>Buyer</p>
       </div>
 
-      <div className={styles.tabColumn, styles.item} onClick={() => setTab("Scrap buyer staff")} style={tab==="Scrap buyer staff" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
+      <div className={`${styles.tabColumn} ${styles.item}`} onClick={() => setTab("Scrap buyer staff")} style={tab==="Scrap buyer staff" ? {borderBottomWidth: "6.5px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px"} : undefined}>
       <p className={styles.tabTitle}>Staff</p>
       </div>
     

@@ -44,7 +44,7 @@ function ScrapBuyerStaff() {
       
     }
 
-  }, [user, dispatch])
+  }, [user, dispatch, users.length])
 
   return (
 <><StaffTableFilter />

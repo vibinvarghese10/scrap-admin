@@ -68,7 +68,17 @@ function ItemModal(props) {
      props.setItemModalStatus(false)
      props.setSelectedItem({})
     }
+    
 
+    const confirmBtnClickHandler = () => {
+      props.setItemModalStatus(false);
+      props.setSelectedItem({});
+    }
+
+    const cancelBtnClickHandler = () => {
+      props.setItemModalStatus(false)
+      props.setSelectedItem({})
+    }
   return (
     <Modal
     isOpen={props.itemModalStatus}
@@ -82,7 +92,7 @@ function ItemModal(props) {
        <input type={"text"} onChange={(e) => setDeleteConfirmationText(e.target.value)} placeholder={'type "'+props.item.itemName +'"'} />
        <div className={styles.btnContainer}>
          <button className={styles.cancelBtn} onClick={() => deleteSubmitHandler()} disabled={deleteConfirmationText!==props.item.itemName}><h1>Delete</h1></button>
-         <button className={styles.confirmBtn} onClick={() => (props.setItemModalStatus(false), props.setSelectedItem({}))}><h1>Cancel</h1></button>
+         <button className={styles.confirmBtn} onClick={() => confirmBtnClickHandler()}><h1>Cancel</h1></button>
          </div>
       </div>
 
@@ -101,7 +111,7 @@ function ItemModal(props) {
 </select>
         <div className={styles.btnContainer}>
          <button className={styles.confirmBtn} onClick={() => props.itemModalType==="Create" ? addSubmitHandler() : props.itemModalType==="Update" ? updateSubmitHandler() : null}><h1>Submit</h1></button>
-         <button className={styles.cancelBtn} onClick={() => (props.setItemModalStatus(false), props.setSelectedItem({}))}><h1>Cancel</h1></button>
+         <button className={styles.cancelBtn} onClick={() => cancelBtnClickHandler()}><h1>Cancel</h1></button>
          </div>
        </form>
 

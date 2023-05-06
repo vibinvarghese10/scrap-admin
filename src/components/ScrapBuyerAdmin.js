@@ -43,7 +43,7 @@ function ScrapBuyerAdmin() {
       
     }
 
-  }, [user, dispatch])
+  }, [user, dispatch, users.length])
 
   return (
 

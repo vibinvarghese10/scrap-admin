@@ -34,6 +34,24 @@ function ItemTable(props) {
       }
     }, [categoryToFilter, dispatch])
 
+
+    const editBtnHandler = (item) => {
+      setItemModalStatus(true)
+      setItemModalType("Update")
+      setSelectedItem(item)
+    }
+
+    const addBtnHandler = () => {
+      setItemModalStatus(true)
+      setItemModalType("Create")
+    }
+
+    const dltBtnHandler = (item) => {
+      setItemModalStatus(true)
+      setItemModalType("Delete")
+      setSelectedItem(item)
+    }
+
   return (
       <>
       {loading ? (
@@ -48,7 +66,7 @@ function ItemTable(props) {
           
 
           <div className={styles.tableHeaderRight}>
-          <button onClick={() => (setItemModalStatus(true), setItemModalType("Create"))}><h1>Add item</h1></button>
+          <button onClick={() => addBtnHandler()}><h1>Add item</h1></button>
           <select name="categories" value={categoryToFilter} onChange={(e) => setCategoryToFilter(e.target.value)} >
           <option value="">---------</option>
   <option value="Paper">Paper</option>
@@ -77,8 +95,8 @@ function ItemTable(props) {
     <td>₹ {item.rate}</td>
     <td>{item?.category?.categoryName}</td>
     <td>{item.unit}</td>
-    <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Update"), setSelectedItem(item))} type='button' className={styles.edtBtn}>Edit</button></td>
-    <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Delete"), setSelectedItem(item))} type='button' className={styles.dltBtn}>Delete</button></td>
+    <td><button onClick={() => editBtnHandler(item)} type='button' className={styles.edtBtn}>Edit</button></td>
+    <td><button onClick={() => dltBtnHandler(item)} type='button' className={styles.dltBtn}>Delete</button></td>
   </tr>))
       ) : (
         filterItems.map((item, index) => (
@@ -88,8 +106,8 @@ function ItemTable(props) {
     <td>₹ {item.rate}</td>
     <td>{item?.category?.categoryName}</td>
     <td>{item.unit}</td>
-    <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Update"), setSelectedItem(item))} type='button' className={styles.edtBtn}>Edit</button></td>
-    <td><button onClick={() => (setItemModalStatus(true), setItemModalType("Delete"), setSelectedItem(item))} type='button' className={styles.dltBtn}>Delete</button></td>
+    <td><button onClick={() =>  editBtnHandler(item)} type='button' className={styles.edtBtn}>Edit</button></td>
+    <td><button onClick={() => dltBtnHandler(item)} type='button' className={styles.dltBtn}>Delete</button></td>
   </tr>))
       )}
     </table>
