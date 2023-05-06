@@ -22,7 +22,6 @@ USER_SCRAPBUYERSTAFF_MANAGEMENT_SUCCESS,
 USER_SCRAPBUYERSTAFF_MANAGEMENT_REQUEST,
 USER_SCRAPSELLER_FILTER_REQUEST,
         USER_SCRAPSELLER_FILTER_SUCCESS,
-      USER_SCRAPSELLER_FILTER_RESET,
     USER_SCRAPSELLER_FILTER_FAIL  } from "../constants/userConstant";
 
 import axios from "axios" 
@@ -360,6 +359,8 @@ export const logout = () => (dispatch) => {
             const userFilter = users.filter((user) => {
                     if((accountStatus ? user.is_active : true)  && (joinedDate ? user.date_joined.slice(0, 10)===joinedDate : true)  && (userId ? (user.id===Number(userId) || user.username===userId || user.first_name===userId) : true)){
                         return user
+                    }else{
+                        return null
                     } 
                 })
               

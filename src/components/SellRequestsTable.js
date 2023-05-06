@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import { listSellRequest } from '../actions/orderActions';
 import styles from './Table.module.css';
 import { sellRequestManagement } from '../actions/orderActions';
 import Flash from './Flash';
-import {SELLREQUEST_MANAGEMENT_FAIL, SELLREQUEST_MANAGEMENT_RESET} from '../constants/orderConstant';
+import {SELLREQUEST_MANAGEMENT_RESET} from '../constants/orderConstant';
 import SellRequestTableFilter from './SellRequestTableFilter';
 import { filterSellrequestList } from '../actions/orderActions';
 import {SELLREQUEST_FILTER_RESET} from '../constants/orderConstant';
@@ -65,7 +64,7 @@ function SellRequestsTable() {
     }
 
 
-  }, [requestStatus, requestId, requestDate])
+  }, [requestStatus, requestId, requestDate, dispatch])
 
 
   return (

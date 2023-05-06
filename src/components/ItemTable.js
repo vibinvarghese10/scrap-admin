@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
-import { useFetcher } from 'react-router-dom';
-import { listItems, updateItem } from '../actions/itemAction';
-import Button from 'react-bootstrap/Button';
+import { listItems } from '../actions/itemAction';
 import Spinner from 'react-bootstrap/Spinner';
 import ItemModal from '../modal/ItemModal';
-import { ITEM_LIST_FAIL } from '../constants/itemConstant';
 import styles from './ItemTable.module.css';
 import { filterItem } from '../actions/itemAction';
 
@@ -29,14 +25,14 @@ function ItemTable(props) {
         
       dispatch(listItems())
 
-    }, [])
+    }, [dispatch])
 
 
     useEffect(() => {
       if(categoryToFilter){
       dispatch(filterItem(categoryToFilter))
       }
-    }, [categoryToFilter])
+    }, [categoryToFilter, dispatch])
 
   return (
       <>

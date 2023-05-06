@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import {  scrapBuyerStaffList } from '../actions/userAction';
 import styles from './Table.module.css';
@@ -45,7 +44,7 @@ function ScrapBuyerStaff() {
       
     }
 
-  }, [user])
+  }, [user, dispatch])
 
   return (
 <><StaffTableFilter />

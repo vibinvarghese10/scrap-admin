@@ -38,16 +38,16 @@ function Categories() {
 
   useEffect(() => {
     dispatch(listCategories())
-  }, [])
+  }, [dispatch])
   return (
 
     <div className={styles.categoryContainer}>
+      {loading && <h1>Loding...</h1>}
       <div className={styles.categoryHeader}>
  
      <p>Categories</p>
      {addStatus ? (
        <h1 onClick={() => setAddStatus(false)}>Close</h1>
-       
      ) : (
       <h1 onClick={() => (setAddStatus(true), setUpdateStatus(null), setDeleteStatus(null))}>Add</h1>
 
@@ -102,7 +102,7 @@ function Categories() {
      </div>
      </div>
 
- 
+  
   )
 }
 

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders } from '../actions/orderActions';
 import styles from './Table.module.css';
@@ -28,20 +27,21 @@ function OrderTable() {
 
   useEffect(() => {
     dispatch(listOrders())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
 
       dispatch(filterOrderList(orderStatus, orderId, totalPrice, acceptedDate, completedDate))
 
 
-  }, [orderStatus, orderId, totalPrice, acceptedDate, completedDate])
+  }, [orderStatus, dispatch, orderId, totalPrice, acceptedDate, completedDate])
 
 
   return (
  
 
 <>
+{loading && <h1>Loading...</h1>}
 <OrderTableFilter setAcceptedDate={setAcceptedDate} setCompletedDate={setCompletedDate} orderStatus={orderStatus} setOrderStatus={setOrderStatus} orderId={orderId} setOrderId={setOrderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
 <div className={styles.tableContainer}>
 <table>

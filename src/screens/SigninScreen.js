@@ -36,7 +36,7 @@ function SigninScreen() {
       dispatch({type:USER_LOGIN_FAIL, payload:null})
       
     }
-}, [userInfo, error])
+}, [userInfo, error, dispatch, navigate])
 
 
   const submitHandler = (e) => {

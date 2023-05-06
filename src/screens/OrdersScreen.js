@@ -21,7 +21,7 @@ function OrdersScreen() {
     if(Object.keys(userInfo).length===0){
         navigate("/signin")
     }
-}, [userInfo])
+}, [userInfo, navigate])
 
 
   return (

@@ -23,8 +23,8 @@ import {
   function App() {
     const dispatch = useDispatch()
 
-    const userInformation = useSelector(state => state.userLogin)
-    const {userInfo} = userInformation
+    //const userInformation = useSelector(state => state.userLogin)
+    //const {userInfo} = userInformation
 
     useEffect(() => {
       const userInfoFromStorage = async ()  => {
@@ -47,7 +47,7 @@ import {
       userInfoFromStorage()
     
   
-      }, [])
+      }, [dispatch])
   
     
 

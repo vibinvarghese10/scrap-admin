@@ -10,7 +10,7 @@ function Flash(props) {
             }, 6000);
           }
 
-    }, [props.visibility]);
+    }, [props.visibility, props.setVisibility]);
 
   return (
  <>

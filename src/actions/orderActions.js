@@ -214,6 +214,8 @@ export const listSellRequest = () => async (dispatch, getState) => {
         const filterFunc = orders.filter((order) => {
                 if((completedDate ? order.completedDate?.slice(0, 10)===completedDate : true) && (acceptedDate ? order.acceptedDate===acceptedDate : true) && (orderStatus ? order.requestStatus===orderStatus : true) && (orderId ? (order.id===Number(orderId) || order.sellRequest.requestedUser.first_name===orderId) : true) && (totalPrice ? (totalPrice==="500" ? (order.totalPrice<=500.00 && order.totalPrice>0) : totalPrice==="5000" ? order.totalPrice>=5000.00 : false) : true)){
                     return order
+                }else {
+                    return null
                 } 
             })
 
@@ -241,11 +243,13 @@ export const listSellRequest = () => async (dispatch, getState) => {
         const {
             sellRequestList: {sellRequests},
             } = getState()
-            console.log("mystate", sellRequests)
+            
 
         const requestFilterFunc = sellRequests.filter((req) => {
                 if((requestStatus ? req.requestStatus===requestStatus : true)  && (requestedDate ? req.requestedDate===requestedDate : true)  && (requestId ? (req.id===Number(requestId) || req.requestedUser.first_name===requestId) : true)){
                     return req
+                }else{
+                    return null
                 } 
             })
           

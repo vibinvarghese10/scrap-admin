@@ -1,6 +1,5 @@
 import React from "react";
-import Chart from "chart.js/auto";
-import { Line, Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import styles from './StatChart.module.css';
 
 const labels = ["January", "February", "March", "April", "May", "June"];
