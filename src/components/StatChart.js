@@ -5,16 +5,19 @@ import { Chart, registerables } from "chart.js";
 
 Chart.register(...registerables);
 
-const labels = ["January", "February", "March", "April", "May", "June"];
+
+
+function StatChart({chartDataToRender, label}) {
+ 
 
 const data = {
-  labels: labels,
+  labels: chartDataToRender.labels,
   datasets: [
     {
-      label: "My First dataset",
+      label: label,
       backgroundColor: "rgb(255, 99, 132)",
       borderColor: "rgb(255, 99, 132)",
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: chartDataToRender.data,
     },
   ],
 };
@@ -26,8 +29,6 @@ const chartOptions = {
 
 
 };
-
-function StatChart() {
   return (
     <div className={styles.chartContainer} >
         <Line data={data} options={chartOptions}/>

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { listItems } from '../actions/itemAction';
-import Spinner from 'react-bootstrap/Spinner';
 import ItemModal from '../modal/ItemModal';
 import styles from './ItemTable.module.css';
 import { filterItem } from '../actions/itemAction';
@@ -21,18 +20,15 @@ function ItemTable(props) {
 
     const {items, loading} = useSelector(state => state.itemList)
 
-      useEffect(() => {
-        
-      dispatch(listItems())
-
-    }, [dispatch])
-
 
     useEffect(() => {
+      if(items.length===0){
+      dispatch(listItems())
+      }
       if(categoryToFilter){
       dispatch(filterItem(categoryToFilter))
       }
-    }, [categoryToFilter, dispatch])
+    }, [categoryToFilter, dispatch, items.length])
 
 
     const editBtnHandler = (item) => {
@@ -56,7 +52,7 @@ function ItemTable(props) {
       <>
       {loading ? (
             <div style={{height:"70vh", display:'flex', justifyContent:"center", alignItems:"center"}}>
-            <Spinner animation="border" />
+            Loading...
             </div>
          
         ) : (
@@ -89,7 +85,7 @@ function ItemTable(props) {
    
       {!categoryToFilter ? (
         items.map((item, index) => (
-          <tr>
+          <tr key={index}>
     <td>{index+1}</td>
     <td>{item.itemName}</td>
     <td>₹ {item.rate}</td>
@@ -100,7 +96,7 @@ function ItemTable(props) {
   </tr>))
       ) : (
         filterItems.map((item, index) => (
-          <tr>
+          <tr key={index}>
     <td>{index+1}</td>
     <td>{item.itemName}</td>
     <td>₹ {item.rate}</td>

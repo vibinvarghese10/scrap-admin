@@ -32,6 +32,7 @@
     border-style: solid;
     background-color: #dddddd;
     margin-left: 10px;
+    outline: none;
 }
 
 .tableHeaderRight{
@@ -53,6 +54,7 @@
     border-style: solid;
     border-radius: 5px;
     border-width: 0.01px;
+    padding: 5px;
 }
 .edtBtn{
     border-color: dodgerblue;
@@ -74,6 +76,14 @@
 
     .tableContainer{
         margin: 20px 0 20px 0;
+    }
+
+    .tableHeader{
+        /*background-color: coral;*/
+        margin: 20px 5px 0px 5px;
+        
+    
+    
     }
 
 }

@@ -37,8 +37,10 @@ function Categories() {
   }
 
   useEffect(() => {
+    if(categories.length===0){
     dispatch(listCategories())
-  }, [dispatch])
+    }
+  }, [dispatch, categories.length])
 
   const addBtnHandler = () => {
     setAddStatus(true)
@@ -59,9 +61,14 @@ function Categories() {
     setUpdateStatus(null)
   }
   return (
-
+    <>
+    {loading ? (
+    <div style={{height:"70vh", display:'flex', justifyContent:"center", alignItems:"center"}}>
+    Loading...
+    </div>) : (
+  
     <div className={styles.categoryContainer}>
-      {loading && <h1>Loding...</h1>}
+      
       <div className={styles.categoryHeader}>
  
      <p>Categories</p>
@@ -85,7 +92,7 @@ function Categories() {
      
      <div className={styles.categoryBody}>
        {categories.map((category, index) => (
-          <>
+          <div key={index}>
           {updateStatus && updateStatus.id===category.id ? (
             <div className={styles.updateInputContainer}>
             <input type={"text"} value={categoryUpdateInput} onChange={(e) => setCategoryUpdateInput(e.target.value)} placeholder='category'/>
@@ -114,14 +121,16 @@ function Categories() {
             </div>
             </div>
           )}
-          </>
+          </div>
         
        ))}
       
      </div>
      </div>
+    
+     )}
 
-  
+</>
   )
 }
 

@@ -19,29 +19,34 @@ function OrderTable() {
 
 
   const allCompletedOrderList = useSelector(state => state.orderList)
-  const {orders} = allCompletedOrderList
+  const {orders, loading} = allCompletedOrderList
 
-  const {orders:filteredOrder, loading} = useSelector(state => state.orderFilter)
+  const {orders:filteredOrder} = useSelector(state => state.orderFilter)
 
-
-
-  useEffect(() => {
-    dispatch(listOrders())
-  }, [dispatch])
 
   useEffect(() => {
+    if(orders.length===0){
+      dispatch(listOrders())
 
+    }
+    if(orderStatus || orderId || totalPrice || acceptedDate || completedDate){
       dispatch(filterOrderList(orderStatus, orderId, totalPrice, acceptedDate, completedDate))
+    }
 
 
-  }, [orderStatus, dispatch, orderId, totalPrice, acceptedDate, completedDate])
+  }, [orderStatus, dispatch, orderId, totalPrice, acceptedDate, completedDate, orders.length])
 
 
   return (
  
 
 <>
-{loading && <h1>Loading...</h1>}
+{loading ? (
+  <div style={{height:"70vh", display:'flex', justifyContent:"center", alignItems:"center"}}>
+  Loading...
+  </div>
+) : (
+  <>
 <OrderTableFilter setAcceptedDate={setAcceptedDate} setCompletedDate={setCompletedDate} orderStatus={orderStatus} setOrderStatus={setOrderStatus} orderId={orderId} setOrderId={setOrderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
 <div className={styles.tableContainer}>
 <table>
@@ -115,6 +120,8 @@ function OrderTable() {
 </table>
 
 </div>
+</>
+)}
 </>
 
   )

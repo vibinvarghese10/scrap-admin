@@ -15,7 +15,7 @@ function ScrapBuyerStaff() {
   let [type, setType] = useState(false);
 
   const allScrapBuyerStaff = useSelector(state => state.scrapBuyerStaffList)
-  const {users} = allScrapBuyerStaff
+  const {users, loading} = allScrapBuyerStaff
 
   const scrapBuyerStaffManagementVar = useSelector(state => state.scrapBuyerStaffManagement)
   const {user} = scrapBuyerStaffManagementVar
@@ -47,7 +47,15 @@ function ScrapBuyerStaff() {
   }, [user, dispatch, users.length])
 
   return (
-<><StaffTableFilter />
+<>
+{loading ? (
+  <div style={{height:"70vh", display:'flex', justifyContent:"center", alignItems:"center"}}>
+  Loading...
+  </div>
+) : (
+  <>
+  
+<StaffTableFilter />
 <div className={styles.tableContainer}>
 <table>
 
@@ -82,6 +90,8 @@ function ScrapBuyerStaff() {
 </table>
 <Flash visibility={visibility} setVisibility={setVisibility} type={type} message={message}/>
 </div>
+</>
+)}
 </>
   )
 }

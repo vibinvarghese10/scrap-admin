@@ -14,7 +14,7 @@ function ScrapBuyerAdmin() {
   let [type, setType] = useState(false);
 
   const allScrapBuyerAdmin = useSelector(state => state.scrapBuyerAdminList)
-  const {users} = allScrapBuyerAdmin
+  const {users, loading} = allScrapBuyerAdmin
 
   const scrapBuyerAdminManagementVar = useSelector(state => state.scrapBuyerAdminManagement)
   const {user} = scrapBuyerAdminManagementVar
@@ -48,6 +48,12 @@ function ScrapBuyerAdmin() {
   return (
 
 <>
+{loading ? (
+  <div style={{height:"70vh", display:'flex', justifyContent:"center", alignItems:"center"}}>
+  Loading...
+  </div>
+) : (
+  <>
 <AdminTableFilter />
 <div className={styles.tableContainer}>
 <table>
@@ -89,6 +95,8 @@ function ScrapBuyerAdmin() {
 </table>
 <Flash visibility={visibility} setVisibility={setVisibility} type={type} message={message}/>
 </div>
+</>
+)}
 </>
   )
 }

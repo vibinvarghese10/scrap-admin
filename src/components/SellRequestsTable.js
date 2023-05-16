@@ -22,7 +22,7 @@ function SellRequestsTable() {
   const [requestDate, setRequestDate] = useState(null)
 
   const allSellRequestList = useSelector(state => state.sellRequestList)
-  const {sellRequests} = allSellRequestList
+  const {sellRequests, loading} = allSellRequestList
 
   const {filteredSellRequests} = useSelector(state => state.sellrequestFilter)
   console.log("filtered data", filteredSellRequests)
@@ -56,8 +56,9 @@ function SellRequestsTable() {
 
 
   useEffect(() => {
-
+    if(requestStatus || requestId || requestDate){
     dispatch(filterSellrequestList(requestStatus, requestId, requestDate))
+    }
 
     if(!requestDate && !requestId && !requestStatus){
       dispatch({type:SELLREQUEST_FILTER_RESET})
@@ -69,6 +70,12 @@ function SellRequestsTable() {
 
   return (
 <>
+{loading ? (
+  <div style={{height:"70vh", display:'flex', justifyContent:"center", alignItems:"center"}}>
+  Loading...
+  </div>
+) : (
+  <>
 <SellRequestTableFilter requestId={requestId} setRequestId={setRequestId} requestStatus={requestStatus} setRequestStatus={setRequestStatus} requestDate={requestDate} setRequestDate={setRequestDate}/>
 <div className={styles.tableContainer}>
 
@@ -128,6 +135,8 @@ function SellRequestsTable() {
 </table>
 <Flash visibility={visibility} setVisibility={setVisibility} type={type} message={message}/>
 </div>
+</>
+)}
 </>
   )
 }

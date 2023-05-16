@@ -12,6 +12,7 @@
     border-style: solid;
     border-radius: 5px;
     border-width: 0.01px;
+    padding: 5px;
 }
 .blueBtn{
     border-color: dodgerblue;

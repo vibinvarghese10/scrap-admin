@@ -16,14 +16,14 @@ function ScrapSellerUser() {
   let [message, setMessage] = useState("");
   let [type, setType] = useState(false);
 
-  const [accountStatus, setAccountStatus] = useState(null)
+  const [accountStatus, setAccountStatus] = useState("")
   const [userId, setUserId] = useState(null)
   const [joinedDate, setJoinedDate] = useState(null)
 
   console.log("status", accountStatus)
 
   const allScrapSeller = useSelector(state => state.scrapSellerList)
-  const {users} = allScrapSeller
+  const {users, loading} = allScrapSeller
 
   const scrapSellerManagementVar = useSelector(state => state.scrapSellerManagement)
   const {user} = scrapSellerManagementVar
@@ -36,7 +36,6 @@ function ScrapSellerUser() {
     if(users.length === 0){
     dispatch( scrapSellerList())
     }
-
     if(Object.keys(user).length!==0){
       if(!user.is_active){
         setVisibility(true)
@@ -48,16 +47,14 @@ function ScrapSellerUser() {
         setMessage("User account has been activated")
         setType("blue")
         dispatch({type:USER_SCRAPSELLER_MANAGEMENT_RESET})
-
       }
-      
     }
-
   }, [user, dispatch, users.length])
 
   useEffect(() => {
-
+   if(accountStatus || userId || joinedDate){
     dispatch(filterScrapSellerList(accountStatus, userId, joinedDate))
+   }
 
     if(!accountStatus && !userId && !joinedDate){
       dispatch({type:USER_SCRAPSELLER_FILTER_RESET})
@@ -67,6 +64,12 @@ function ScrapSellerUser() {
   }, [accountStatus, userId, joinedDate, dispatch])
   return (
 <>
+{loading ? (
+  <div style={{height:"70vh", display:'flex', justifyContent:"center", alignItems:"center"}}>
+  Loading...
+  </div>
+) : (
+  <>
 <SellerTableFilter setJoinedDate={setJoinedDate} setUserId={setUserId} accountStatus={accountStatus} setAccountStatus={setAccountStatus}/>
 <div className={styles.tableContainer}>
 <table>
@@ -81,10 +84,9 @@ function ScrapSellerUser() {
         <th>Sell request</th>
         <th></th>
       </tr>
-
       {accountStatus || userId || joinedDate ? (
         filteredUsers.map((user, index) => (
-        <tr>
+        <tr key={index}>
         <td>{index+1}</td>
         <td>{user.id}</td>
         <td>{user.username}</td>
@@ -94,10 +96,9 @@ function ScrapSellerUser() {
         <td>{user.sellRequests}</td>
         <td><button onClick={() => dispatch(scrapSellerManagement(user.id))} className={user.is_active ? styles.redBtn : styles.blueBtn}>{user.is_active ? "Deactivate" : "Activate"}</button></td>
       </tr>
-
       ))) : (
         users.map((user, index) => (
-          <tr>
+          <tr key={index}>
           <td>{index+1}</td>
           <td>{user.id}</td>
           <td>{user.username}</td>
@@ -107,17 +108,13 @@ function ScrapSellerUser() {
           <td>{user.sellRequests}</td>
           <td><button onClick={() => dispatch(scrapSellerManagement(user.id))} className={user.is_active ? styles.redBtn : styles.blueBtn}>{user.is_active ? "Deactivate" : "Activate"}</button></td>
         </tr>
-  
         ))
-        
-
       )}
-
-
-
 </table>
 <Flash visibility={visibility} setVisibility={setVisibility} type={type} message={message}/>
 </div>
+</>
+)}
 </>
   )
 }

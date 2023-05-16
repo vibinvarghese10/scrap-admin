@@ -51,6 +51,12 @@
     outline: none;
     flex: 8;
     margin-right: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    padding-left: 10px;
+    border-color: #dddddd;
+    box-sizing: border-box;
+    
 }
 
 .addInputContainer button, .updateInputContainer button, .deleteInputContainer button{

@@ -13,7 +13,7 @@ function SellRequestTableFilter(props) {
 <option value="Accepted">Accepted</option>
 </select>
 
-<input className={styles.datePicker} onChange={(e) => props.setRequestDate(e.target.value)} type={"date"}/>
+<input className={styles.datePicker} placeholder='Requested date' onChange={(e) => props.setRequestDate(e.target.value)} type={"date"}/>
 </div>
   )
 }

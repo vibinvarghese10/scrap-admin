@@ -1,18 +1,38 @@
 .boxContainer{
 
     background-color: #dddddd;
-    width: auto;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    padding: 20px;
     border-radius: 10px;
+    
+    
 }
+
+.boxHead, .boxData{
+
+    flex: 1;
+    display: flex;
+}
+
+
 
 .boxData p{
     font-weight: bold;
     font-size: 35px;
+    display: inline-block;
+    margin: 0 10px auto 20px;
 }
 
-.boxHead h5{
+.boxHead p{
     font-weight: 500;
+    margin: auto 10px auto 20px;
 
 }
+
+/*
+width: auto;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+*/

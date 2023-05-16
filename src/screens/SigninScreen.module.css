@@ -8,34 +8,35 @@
 }
 
 .formWraper{
-    min-height: 100px;
+  
     background-color: #dddddd;
-    padding:25px;
+    padding:20px;
     border-radius: 10px;
-    flex-basis: 400px;
-
+    flex-basis: 380px;
 }
 
-input{
+
+.signinInput{
+    background-color: #e7eae5;
+    height: 40px;
+    color: gray;
     width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+    box-sizing: border-box;
+    padding-left: 10px;
+
+
     
-}
-
-.in1, .in2, .btn{
-    margin-top: 10px;
-    margin-bottom: 10px;
-
 
 }
+
+
 
 .btn{
     border-width: 1px;
     border-style: solid;
     border-color: dodgerblue;
     color: dodgerblue;
+    height: 40px;
 }
 
 

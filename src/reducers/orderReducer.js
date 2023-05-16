@@ -7,6 +7,9 @@ import { ORDER_LIST_REQUEST,
      STAT_REQUEST,
      STAT_SUCCESS,
      STAT_FAIL,
+     STAT_CHART_REQUEST,
+     STAT_CHART_SUCCESS,
+     STAT_CHART_FAIL,
      SELLREQUEST_MANAGEMENT_REQUEST,
     SELLREQUEST_MANAGEMENT_SUCCESS,
     SELLREQUEST_MANAGEMENT_RESET,
@@ -80,6 +83,25 @@ SELLREQUEST_FILTER_RESET } from "../constants/orderConstant";
                   return state;
               }
             }; 
+
+
+            export const statChartInfoReducer = (state = {chartData:{user:{}, order:{}}, loading:true, error:null}, action) => {
+              switch (action.type) {
+                  case STAT_CHART_REQUEST:
+                    return { ...state, loading: true };
+                  case STAT_CHART_SUCCESS:
+                    return {
+                      ...state,
+                      loading: false,
+                      error: null,
+                      chartData: action.payload
+                    };
+                  case STAT_CHART_FAIL:
+                    return { ...state, loading: false, error: action.payload };
+                  default:
+                    return state;
+                }
+              }; 
 
 
             export const sellRequestManagementReducers = (state = {sellRequest:{}, error:null}, action) => {

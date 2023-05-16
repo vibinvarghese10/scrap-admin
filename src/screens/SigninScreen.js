@@ -51,13 +51,13 @@ function SigninScreen() {
     <form method='POST' onSubmit={submitHandler}>
       <div className={styles.in1}>
       <h1>Username</h1>
-      <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder='username'></input>
+      <input type="text" className={styles.signinInput} onChange={(e) => setUsername(e.target.value)} placeholder='username' />
       </div>
       <div className={styles.in2}>
         <h1>Password</h1>
-      <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder='password'></input>
+      <input type="password" className={styles.signinInput} onChange={(e) => setPassword(e.target.value)} placeholder='password' />
       </div>
-      <input type="submit" value={loading ? "loading" : "Signin"} disabled={loading ? true : false} className={styles.btn}></input>
+      <input type="submit" value={loading ? "loading" : "Signin"} disabled={loading ? true : false} className={styles.btn}/>
 
     </form>
     <Flash visibility={visibility} setVisibility={setVisibility} type={type} message={message}/>

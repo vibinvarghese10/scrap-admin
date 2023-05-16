@@ -16,6 +16,9 @@ ORDER_FILTER_FAIL,
 SELLREQUEST_FILTER_REQUEST,
 SELLREQUEST_FILTER_SUCCESS,
 SELLREQUEST_FILTER_FAIL,
+STAT_CHART_REQUEST,
+     STAT_CHART_SUCCESS,
+     STAT_CHART_FAIL,
       } from "../constants/orderConstant";
 
 import axios from "axios"     
@@ -263,6 +266,46 @@ export const listSellRequest = () => async (dispatch, getState) => {
     }catch(error){
         dispatch({
             type:SELLREQUEST_FILTER_FAIL,
+            payload:error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+ }
+
+
+
+ export const chartStatDataCaller = () => async (dispatch, getState) => {
+
+    try{
+
+        dispatch({type:STAT_CHART_REQUEST})
+
+        const {
+            userLogin: {userInfo},
+            } = getState()
+
+    
+            const config = {
+                headers:{
+                    'Content-type':'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+     const { data } = await axios.get(
+         `https://scrap-selling-app-server.onrender.com/api/admin/chart-stat/`,
+         config
+         )
+        
+        dispatch({
+            type:STAT_CHART_SUCCESS,
+            payload:data
+        })
+        
+    }catch(error){
+        dispatch({
+            type:STAT_CHART_FAIL,
             payload:error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,
